@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Wildlife Reporting App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-root">
+    <header class="app-header">
+      <div>
+        <h1>Wildlife Reporting App</h1>
+        <p class="subtitle">Log wildlife sightings, see risk levels, and view live alerts.</p>
+      </div>
+      <div class="badge">Student Portfolio Demo</div>
+    </header>
+
+    <main class="layout">
+      <section class="card form-card">
+        <h2>New Sighting</h2>
+        <p class="helper-text">Capture key details about a wildlife sighting. Risk level is calculated automatically.</p>
+        <form id="sighting-form">
+          <div class="field-row">
+            <div class="field">
+              <label for="species">Species <span>*</span></label>
+              <input id="species" name="species" type="text" required placeholder="e.g., Black Bear" />
+            </div>
+            <div class="field">
+              <label for="category">Category <span>*</span></label>
+              <select id="category" name="category" required>
+                <option value="">Select...</option>
+                <option>Bird</option>
+                <option>Mammal</option>
+                <option>Reptile</option>
+                <option>Amphibian</option>
+                <option>Insect</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="locationName">Location name <span>*</span></label>
+              <input id="locationName" name="locationName" type="text" required placeholder="e.g., Burlington Waterfront" />
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="latitude">Latitude</label>
+              <input id="latitude" name="latitude" type="number" step="0.000001" placeholder="43.325600" />
+            </div>
+            <div class="field">
+              <label for="longitude">Longitude</label>
+              <input id="longitude" name="longitude" type="number" step="0.000001" placeholder="-79.799000" />
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="dateObserved">Date observed</label>
+              <input id="dateObserved" name="dateObserved" type="date" />
+            </div>
+            <div class="field">
+              <label for="observerName">Observer name</label>
+              <input id="observerName" name="observerName" type="text" placeholder="Your name" />
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="email">Contact email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" />
+            </div>
+            <div class="field">
+              <label for="photoUrl">Photo URL</label>
+              <input id="photoUrl" name="photoUrl" type="url" placeholder="https://..." />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="notes">Notes</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="Behaviour, context, or safety notes..."></textarea>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn-primary">Submit sighting</button>
+            <button type="reset" class="btn-ghost" id="reset-btn">Clear</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card list-card">
+        <div class="list-header">
+          <div>
+            <h2>Recent Sightings</h2>
+            <p class="helper-text">Filter by species, category, or risk to explore observations.</p>
+          </div>
+          <div class="filters">
+            <input id="searchInput" type="text" placeholder="Search species or location..." />
+            <select id="filterCategory">
+              <option value="All">All categories</option>
+              <option>Bird</option>
+              <option>Mammal</option>
+              <option>Reptile</option>
+              <option>Amphibian</option>
+              <option>Insect</option>
+              <option>Other</option>
+            </select>
+            <select id="filterRisk">
+              <option value="All">All risks</option>
+              <option>Low</option>
+              <option>Medium</option>
+              <option>High</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="sightingsEmpty" class="empty-state">
+          <p>No sightings logged yet. Submit your first one using the form on the left.</p>
+        </div>
+
+        <div id="sightingsList" class="sightings-list"></div>
+      </section>
+
+      <section class="card alerts-card">
+        <h2>Live Alerts (Simulated)</h2>
+        <p class="helper-text">In a Power Platform version, these alerts would post into Microsoft Teams and email. Here, they appear as a live activity feed.</p>
+        <div id="alertsFeed" class="alerts-feed"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
